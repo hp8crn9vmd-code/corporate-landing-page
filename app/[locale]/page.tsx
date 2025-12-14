@@ -1,7 +1,13 @@
 import { useTranslations } from 'next-intl';
+import { setRequestLocale } from 'next-intl/server';
 import { Link } from '@/lib/i18n/routing';
 
-export default function HomePage() {
+export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  
+  // ضروري للتصدير الثابت
+  setRequestLocale(locale);
+  
   const t = useTranslations('Home');
 
   return (

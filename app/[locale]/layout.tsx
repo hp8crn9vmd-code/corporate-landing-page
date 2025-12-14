@@ -1,15 +1,13 @@
 import type { Metadata } from 'next';
 import { Inter, Cairo } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/lib/i18n/routing';
 
 import Navbar from '@/components/ui/navbar';
 import Footer from '@/components/ui/footer';
 import SecureHead from '@/components/security/SecureHead';
-
-// تصحيح المسار: العودة خطوة واحدة فقط لأن الملفين داخل مجلد app
 import '../globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -33,9 +31,13 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
 
+  // التحقق من اللغة
   if (!routing.locales.includes(locale as any)) {
     notFound();
   }
+
+  // تفعيل الوضع الثابت لهذه اللغة
+  setRequestLocale(locale);
 
   const messages = await getMessages();
 
