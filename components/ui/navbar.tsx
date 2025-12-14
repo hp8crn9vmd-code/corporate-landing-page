@@ -17,8 +17,8 @@ export default function Navbar({ locale }: { locale: string }) {
     if (typeof window !== 'undefined') {
       localStorage.setItem('preferred-language', newLocale);
     }
-    // التوجيه للغة الجديدة
-    router.replace(pathname, { locale: newLocale });
+    // التوجيه للغة الجديدة - تم إضافة as any للإصلاح
+    router.replace(pathname, { locale: newLocale as any });
   };
 
   return (
