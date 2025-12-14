@@ -3,23 +3,20 @@ import type { NextConfig } from 'next';
 
 const withNextIntl = createNextIntlPlugin();
 
-// تحديد اسم المستودع (يجب أن يطابق اسم مستودعك في GitHub)
+// اسم المستودع الخاص بك
 const repoName = '/corporate-landing-page';
 
 const config: NextConfig = {
   output: 'export',
   
-  // إعدادات المسارات الخاصة بـ GitHub Pages
-  // في وضع الإنتاج (Production)، نضيف اسم المستودع كبادئة
+  // نستخدم basePath فقط لتجنب تكرار المسارات
   basePath: process.env.NODE_ENV === 'production' ? repoName : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? repoName : '',
   
-  // مهم جداً للصور في الوضع الثابت
   images: {
     unoptimized: true,
   },
   
-  // تحسين التوجيه في الصفحات الثابتة
+  // هذا يساعد GitHub Pages على التعامل مع المسارات
   trailingSlash: true,
 };
 
