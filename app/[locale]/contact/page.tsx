@@ -1,7 +1,13 @@
 import { useTranslations } from 'next-intl';
+import { setRequestLocale } from 'next-intl/server';
 import ContactForm from './ContactForm';
 
-export default function ContactPage() {
+export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  
+  // ضروري للتصدير الثابت
+  setRequestLocale(locale);
+  
   const t = useTranslations('Contact');
 
   return (
