@@ -5,13 +5,12 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/lib/i18n/routing';
 
-// سنقوم بإنشاء هذه المكونات في الخطوة التالية
 import Navbar from '@/components/ui/navbar';
 import Footer from '@/components/ui/footer';
 import SecureHead from '@/components/security/SecureHead';
 
-// استيراد ملف التنسيق لضمان تطبيقه
-import '../../globals.css';
+// تصحيح المسار: العودة خطوة واحدة فقط لأن الملفين داخل مجلد app
+import '../globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const cairo = Cairo({ subsets: ['arabic'], variable: '--font-cairo' });
@@ -21,7 +20,6 @@ export const metadata: Metadata = {
   description: 'شركة متخصصة في الحلول الرقمية والتقنية المبتكرة',
 };
 
-// دالة حاسمة للتصدير الثابت generateStaticParams 
 export function generateStaticParams() {
   return [{ locale: 'ar' }, { locale: 'en' }];
 }
@@ -35,7 +33,6 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
 
-  // التحقق من صحة اللغة
   if (!routing.locales.includes(locale as any)) {
     notFound();
   }
