@@ -1,14 +1,13 @@
-import { useTranslations } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/lib/i18n/routing';
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   
-  // ضروري للتصدير الثابت
   setRequestLocale(locale);
   
-  const t = useTranslations('Home');
+  // استخدام getTranslations بدلاً من useTranslations في المكونات غير المتزامنة
+  const t = await getTranslations({locale, namespace: 'Home'});
 
   return (
     <div className="relative isolate px-6 pt-14 lg:px-8">
