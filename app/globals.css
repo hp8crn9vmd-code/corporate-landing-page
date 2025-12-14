@@ -1,7 +1,25 @@
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+  }
+}
+
 @theme {
+  /* ربط المتغيرات لتصبح كلاسات
+     bg-background و text-foreground
+  */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
   /* Primary Colors */
   --color-primary-50: #f5ffff;
   --color-primary-100: #ebf0ff;
@@ -80,23 +98,14 @@
   pointer-events: none;
 }
 
-/* Base Layer */
+/* Base Layer Styles */
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-  }
-
   html {
     @apply scroll-smooth;
   }
 
   body {
+    /* الآن ستعمل هذه الكلاسات لأننا عرفناها في @theme */
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
