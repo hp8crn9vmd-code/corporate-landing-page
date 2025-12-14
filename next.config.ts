@@ -1,23 +1,25 @@
-import createNextIntlPlugin from 'next-intl/plugin';
 import type { NextConfig } from 'next';
+import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin();
+const isProd = process.env.NODE_ENV === 'production';
+const repoName = process.env.NEXT_PUBLIC_REPO_NAME || 'corporate-landing-page';
+const assetPrefix = isProd ? `/${repoName}` : '';
+const basePath = isProd ? `/${repoName}` : '';
 
-// اسم المستودع الخاص بك
-const repoName = '/corporate-landing-page';
-
-const config: NextConfig = {
+const nextConfig: NextConfig = {
   output: 'export',
-  
-  // نستخدم basePath فقط لتجنب تكرار المسارات
-  basePath: process.env.NODE_ENV === 'production' ? repoName : '',
-  
+  basePath,
+  assetPrefix,
   images: {
     unoptimized: true,
   },
-  
-  // هذا يساعد GitHub Pages على التعامل مع المسارات
   trailingSlash: true,
+  reactStrictMode: true,
+  compiler: {
+    removeConsole: isProd ? { exclude: ['error', 'warn'] } : false,
+  },
+  skipTrailingSlashRedirect: true,
 };
 
-export default withNextIntl(config);
+export default withNextIntl(nextConfig);
