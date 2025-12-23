@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- =========================================================
+       index.html - Landing Page (Step 1)
+       - Responsive sections: Hero, Features, Contact
+       - Charts: Matplotlib image + Plotly iframe
+       - Three.js: demo in Hero side panel
+       ========================================================= -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Professional Landing Page (Kaggle Generated)</title>
+  <meta name="description" content="A professional, responsive landing page generated in Kaggle with Python." />
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <div style="font-size:14px; opacity:.95;">Your Brand</div>
+            <div style="font-size:12px; color: rgba(255,255,255,0.70);">Kaggle → GitHub Pages</div>
+          </div>
+        </div>
+
+        <div class="navlinks" role="navigation" aria-label="Primary">
+          <a href="#features">Features</a>
+          <a href="#contact">Contact</a>
+          <a class="cta" href="#contact">Get Started</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <section class="card hero-card" aria-label="Hero section">
+          <div class="kicker">⚡ Kaggle-generated • Responsive • Modern</div>
+          <h1 class="h1">Launch a sleek landing page<br/>with real charts + 3D demo</h1>
+          <p class="subtitle">
+            This page is generated entirely with <strong>Python in Kaggle</strong>.
+            It includes a Matplotlib chart, an embedded Plotly 3D visualization, and a Three.js mini scene.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button primary" href="#features">Explore Features →</a>
+            <a class="button" href="#contact">Contact Us</a>
+          </div>
+
+          <div style="margin-top:18px;">
+            <div class="small">Matplotlib (static) example:</div>
+            <div class="chart-img" style="margin-top:10px;">
+              <img src="./assets/mpl_hero_chart.png" alt="Matplotlib chart example" />
+            </div>
+          </div>
+        </section>
+
+        <aside class="card hero-side" aria-label="Hero side panel">
+          <div class="mini card">
+            <h3>3D Preview (Three.js)</h3>
+            <p>A lightweight 3D object rendered via CDN (no build tools required).</p>
+            <div id="threeWrap" class="three-wrap" aria-label="Three.js canvas container"></div>
+          </div>
+
+          <div class="mini card">
+            <h3>Fast & Portable</h3>
+            <p>Works as a static site — perfect for GitHub Pages deployment later.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Features -->
+  <section id="features" class="section">
+    <div class="container">
+      <h2>Features</h2>
+      <p class="lead">A clean structure designed for real deployment. Easy to extend in the next steps.</p>
+
+      <div class="features">
+        <div class="card feature">
+          <span class="badge">Responsive Layout</span>
+          <h3>Mobile-first UI</h3>
+          <p>Grid-based sections that adapt to phones, tablets, and desktops.</p>
+        </div>
+
+        <div class="card feature">
+          <span class="badge">Real Visuals</span>
+          <h3>Matplotlib + Plotly</h3>
+          <p>Static and interactive examples generated from Python.</p>
+        </div>
+
+        <div class="card feature">
+          <span class="badge">3D Ready</span>
+          <h3>Three.js via CDN</h3>
+          <p>Plug-and-play 3D demo without bundlers or complex tooling.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;">
+        <div class="small">Plotly (interactive) example embedded from local HTML:</div>
+        <iframe
+          class="plotly-frame"
+          src="./assets/plotly_3d_scatter.html"
+          title="Plotly 3D Scatter"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Contact</h2>
+      <p class="lead">In Step 2+ we can connect this to a real form endpoint if needed.</p>
+
+      <div class="contact-grid">
+        <div class="card feature" style="padding:18px;">
+          <h3>Let’s build it properly</h3>
+          <p style="color: rgba(255,255,255,0.75); margin-top:8px;">
+            Next steps will include: GitHub repo upload, Pages activation, and a clean deployment workflow.
+          </p>
+          <div style="margin-top:14px;" class="small">
+            Tip: Keep this page static for GitHub Pages compatibility.
+          </div>
+        </div>
+
+        <form id="contactForm" class="card form" aria-label="Contact form">
+          <div class="field">
+            <label for="name" class="small">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" />
+          </div>
+
+          <div class="field">
+            <label for="email" class="small">Email</label>
+            <input id="email" name="email" type="email" placeholder="name@example.com" />
+          </div>
+
+          <div class="field">
+            <label for="message" class="small">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tell us what you need..."></textarea>
+          </div>
+
+          <button class="button primary" type="submit">Send</button>
+          <div id="formStatus" class="small" style="margin-top:10px;"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div>© 2025 Your Brand • Generated in Kaggle</div>
+    </div>
+  </footer>
+
+  <!-- Three.js CDN (no build step) -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>
