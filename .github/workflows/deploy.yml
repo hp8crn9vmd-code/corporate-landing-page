@@ -25,18 +25,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          # تم إزالة cache: "npm" لتجنب خطأ فقدان ملف القفل
-          
-      # استخدام npm install بدلاً من npm ci
+          cache: "npm"
+
       - name: Install Dependencies
-        run: npm install --legacy-peer-deps
-        
-      - name: Run Static Export Validation
+        run: npm ci
+
+      - name: Validate Static Export Configuration
         run: |
           echo "Validating static export configuration..."
           if grep -q "output: 'export'" next.config.ts; then
@@ -45,7 +44,7 @@ jobs:
             echo "❌ Static export not configured"
             exit 1
           fi
-          
+
           if grep -q "generateStaticParams" app/[locale]/layout.tsx; then
             echo "✅ generateStaticParams found"
           else
@@ -53,21 +52,28 @@ jobs:
             exit 1
           fi
 
+      - name: Run Lint
+        run: npm run lint
+
+      - name: Run Unit Tests
+        run: npm test
+
   build:
     runs-on: ubuntu-latest
     needs: test
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          
+          cache: "npm"
+
       - name: Install Dependencies
-        run: npm install --legacy-peer-deps
-        
+        run: npm ci
+
       - name: Build Static Site
         run: npm run build
         env:
@@ -75,7 +81,7 @@ jobs:
           NEXT_PUBLIC_REPO_NAME: ${{ env.NEXT_PUBLIC_REPO_NAME }}
           NEXT_PUBLIC_WEB3FORMS_KEY: ${{ env.NEXT_PUBLIC_WEB3FORMS_KEY }}
           NODE_ENV: production
-          
+
       - name: Validate Build Output
         run: |
           echo "=== Validating Build Output Structure ==="

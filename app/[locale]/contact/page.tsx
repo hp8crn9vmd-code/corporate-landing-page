@@ -1,6 +1,5 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import ContactForm from './ContactForm';
-
+import ContactFormClient from './ContactFormClient';
 export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   
@@ -19,7 +18,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
         </p>
       </div>
       
-      <ContactForm />
+      <ContactFormClient />
     </div>
   );
 }

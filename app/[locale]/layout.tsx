@@ -7,7 +7,6 @@ import { routing } from '@/lib/i18n/routing';
 
 import Navbar from '@/components/ui/navbar';
 import Footer from '@/components/ui/footer';
-import SecureHead from '@/components/security/SecureHead';
 import '../globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -47,8 +46,7 @@ export default async function LocaleLayout({
       dir={locale === 'ar' ? 'rtl' : 'ltr'}
       className={`${locale === 'ar' ? cairo.variable : inter.variable}`}
     >
-      <SecureHead locale={locale} />
-      <body className={`min-h-screen flex flex-col ${locale === 'ar' ? 'rtl' : 'ltr'}`}>
+<body className={`min-h-screen flex flex-col ${locale === 'ar' ? 'rtl' : 'ltr'}`}>
         <NextIntlClientProvider messages={messages}>
           <Navbar locale={locale} />
           <main className="flex-grow">
