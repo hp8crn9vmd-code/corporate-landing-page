@@ -1,20 +1,15 @@
-// CSP مُنظم وقابل للتطوير — المرحلة الأولى (بدون كسر التوافق)
-const CSP = [
-  "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://api.web3forms.com",
-  "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: https:",
-  "connect-src 'self' https://api.web3forms.com",
-].join("; ");
-
 export default function Head() {
   return (
     <>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      {/* منع اقتراح الترجمة في المتصفح قدر الإمكان */}
+      <meta name="google" content="notranslate" />
+      <meta name="googlebot" content="notranslate" />
 
-      {/* Content Security Policy (Static-safe) */}
-      <meta httpEquiv="Content-Security-Policy" content={CSP} />
+      {/* بعض المتصفحات/الإضافات تعتمد على هذا */}
+      <meta httpEquiv="Content-Language" content="ar,en" />
+
+      {/* تحسين التوافق مع اتجاه اللغة */}
+      <meta name="color-scheme" content="light dark" />
     </>
   );
 }
