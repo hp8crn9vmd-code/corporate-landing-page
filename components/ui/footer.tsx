@@ -12,13 +12,15 @@ export default function Footer({ locale }: { locale: string }) {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-center md:text-start">
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              &copy; {currentYear} <span className="font-semibold text-primary-600 dark:text-primary-400">Digital Solutions</span>. {t('rights')}.
+              &copy; {currentYear}{' '}
+              <span className="font-semibold text-primary-600 dark:text-primary-400">
+                Digital Solutions
+              </span>
+              . {t('rights')}.
             </p>
           </div>
           <div className="text-center md:text-end">
-            <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md">
-              {t('description')}
-            </p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md">{t('description')}</p>
           </div>
         </div>
       </div>

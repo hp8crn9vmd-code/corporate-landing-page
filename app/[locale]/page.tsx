@@ -3,11 +3,11 @@ import { Link } from '@/lib/i18n/routing';
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  
+
   setRequestLocale(locale);
-  
+
   // استخدام getTranslations بدلاً من useTranslations في المكونات غير المتزامنة
-  const t = await getTranslations({locale, namespace: 'Home'});
+  const t = await getTranslations({ locale, namespace: 'Home' });
 
   return (
     <div className="relative isolate px-6 pt-14 lg:px-8">
@@ -25,7 +25,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           >
             {t('ctaPrimary')}
           </Link>
-          <Link href="/services" className="text-sm font-semibold leading-6 text-gray-900 dark:text-white">
+          <Link
+            href="/services"
+            className="text-sm font-semibold leading-6 text-gray-900 dark:text-white"
+          >
             {t('ctaSecondary')} <span aria-hidden="true">→</span>
           </Link>
         </div>

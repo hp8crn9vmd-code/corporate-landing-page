@@ -3,7 +3,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 export default async function ServicesPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({locale, namespace: 'Navigation'});
+  const t = await getTranslations({ locale, namespace: 'Navigation' });
 
   return (
     <div className="py-24 px-6 text-center">

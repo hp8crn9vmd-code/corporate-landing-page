@@ -17,7 +17,7 @@ const config: NextConfig = {
   },
 
   // نستخدم basePath فقط لتجنب تكرار المسارات
-  basePath: process.env.NODE_ENV === 'production' ? (basePath || '') : '',
+  basePath: process.env.NODE_ENV === 'production' ? basePath || '' : '',
 
   images: {
     unoptimized: true,

@@ -8,7 +8,7 @@ describe('Footer', () => {
     render(
       <IntlTestProvider locale="en">
         <Footer locale="en" />
-      </IntlTestProvider>
+      </IntlTestProvider>,
     );
 
     expect(document.querySelector('footer')).toBeTruthy();
@@ -18,7 +18,7 @@ describe('Footer', () => {
     render(
       <IntlTestProvider locale="en">
         <Footer locale="en" />
-      </IntlTestProvider>
+      </IntlTestProvider>,
     );
 
     const links = screen.queryAllByRole('link');

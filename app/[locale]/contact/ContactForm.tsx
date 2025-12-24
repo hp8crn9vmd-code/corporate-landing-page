@@ -7,17 +7,18 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Send, CheckCircle, AlertCircle } from 'lucide-react';
 
-// مخطط التحقق Zod Schema 
-const createContactSchema = (t: any) => z.object({
-  name: z.string().min(2, t('name') + ' ' + t('error')), // تخصيص رسائل الخطأ
-  email: z.string().email(t('email') + ' ' + t('error')),
-  subject: z.string().min(5, t('subject') + ' ' + t('error')),
-  message: z.string().min(10, t('message') + ' ' + t('error')),
-  // حقل الحماية من السبام (يجب أن يكون false دائماً)
-  botcheck: z.boolean().refine(val => !val, {
-    message: t('suspicious')
-  })
-});
+// مخطط التحقق Zod Schema
+const createContactSchema = (t: any) =>
+  z.object({
+    name: z.string().min(2, t('name') + ' ' + t('error')), // تخصيص رسائل الخطأ
+    email: z.string().email(t('email') + ' ' + t('error')),
+    subject: z.string().min(5, t('subject') + ' ' + t('error')),
+    message: z.string().min(10, t('message') + ' ' + t('error')),
+    // حقل الحماية من السبام (يجب أن يكون false دائماً)
+    botcheck: z.boolean().refine((val) => !val, {
+      message: t('suspicious'),
+    }),
+  });
 
 type ContactFormData = z.infer<ReturnType<typeof createContactSchema>>;
 
@@ -32,12 +33,12 @@ export default function ContactForm() {
     register,
     handleSubmit,
     reset,
-    formState: { errors }
+    formState: { errors },
   } = useForm<ContactFormData>({
     resolver: zodResolver(createContactSchema(t)),
     defaultValues: {
-      botcheck: false
-    }
+      botcheck: false,
+    },
   });
 
   const onSubmit = async (data: ContactFormData) => {
@@ -52,14 +53,14 @@ export default function ContactForm() {
       formData.append('subject', data.subject);
       formData.append('message', data.message);
 
-      // إعدادات Web3Forms 
+      // إعدادات Web3Forms
       formData.append('access_key', process.env.NEXT_PUBLIC_WEB3FORMS_KEY || 'YOUR_KEY_HERE');
       formData.append('from_name', 'Corporate Site Contact');
       formData.append('subject', `New Contact: ${data.subject}`);
 
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: formData
+        body: formData,
       });
 
       const result = await response.json();
@@ -83,20 +84,17 @@ export default function ContactForm() {
   return (
     <div className="max-w-2xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        
         {/* Honeypot Field - Hidden */}
         <div className="honeypot-field">
-          <input
-            type="checkbox"
-            {...register('botcheck')}
-            tabIndex={-1}
-            autoComplete="off"
-          />
+          <input type="checkbox" {...register('botcheck')} tabIndex={-1} autoComplete="off" />
         </div>
 
         {/* Name Field */}
         <div>
-          <label htmlFor="name" className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300"
+          >
             {t('name')} *
           </label>
           <input
@@ -114,7 +112,10 @@ export default function ContactForm() {
 
         {/* Email Field */}
         <div>
-          <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300"
+          >
             {t('email')} *
           </label>
           <input
@@ -132,7 +133,10 @@ export default function ContactForm() {
 
         {/* Subject Field */}
         <div>
-          <label htmlFor="subject" className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+          <label
+            htmlFor="subject"
+            className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300"
+          >
             {t('subject')} *
           </label>
           <input
@@ -150,7 +154,10 @@ export default function ContactForm() {
 
         {/* Message Field */}
         <div>
-          <label htmlFor="message" className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+          <label
+            htmlFor="message"
+            className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300"
+          >
             {t('message')} *
           </label>
           <textarea
@@ -189,12 +196,18 @@ export default function ContactForm() {
 
         {/* Status Message */}
         {submitStatus !== 'idle' && (
-          <div className={`p-4 rounded-lg flex items-center gap-3 ${
-            submitStatus === 'success' 
-              ? 'bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-300' 
-              : 'bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-300'
-          }`}>
-            {submitStatus === 'success' ? <CheckCircle className="shrink-0" /> : <AlertCircle className="shrink-0" />}
+          <div
+            className={`p-4 rounded-lg flex items-center gap-3 ${
+              submitStatus === 'success'
+                ? 'bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-300'
+                : 'bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-300'
+            }`}
+          >
+            {submitStatus === 'success' ? (
+              <CheckCircle className="shrink-0" />
+            ) : (
+              <AlertCircle className="shrink-0" />
+            )}
             <span>{submitMessage}</span>
           </div>
         )}
