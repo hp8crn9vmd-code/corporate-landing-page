@@ -3,9 +3,11 @@ import type { NextConfig } from 'next';
 
 const withNextIntl = createNextIntlPlugin();
 
-// اسم المستودع الخاص بك
-const repoName = '/corporate-landing-page';
+// basePath for GitHub Pages: /<repoName> (optional)
+const repoName = process.env.NEXT_PUBLIC_REPO_NAME ? `/${process.env.NEXT_PUBLIC_REPO_NAME}` : '';
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? repoName;
 
+// اسم المستودع الخاص بك
 const config: NextConfig = {
   output: 'export',
 
@@ -15,7 +17,7 @@ const config: NextConfig = {
   },
 
   // نستخدم basePath فقط لتجنب تكرار المسارات
-  basePath: process.env.NODE_ENV === 'production' ? repoName : '',
+  basePath: process.env.NODE_ENV === 'production' ? basePath || '' : '',
 
   images: {
     unoptimized: true,

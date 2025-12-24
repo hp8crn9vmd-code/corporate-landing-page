@@ -6,20 +6,21 @@ import { IntlTestProvider } from '../../../test/test-utils';
 describe('Footer', () => {
   it('renders without crashing', () => {
     render(
-      <IntlTestProvider>
-        <Footer />
-      </IntlTestProvider>
+      <IntlTestProvider locale="en">
+        <Footer locale="en" />
+      </IntlTestProvider>,
     );
-    const footer = document.querySelector('footer');
-    expect(footer).toBeTruthy();
+
+    expect(document.querySelector('footer')).toBeTruthy();
   });
 
-  it('renders links container (if any)', () => {
+  it('renders at least zero links (smoke)', () => {
     render(
-      <IntlTestProvider>
-        <Footer />
-      </IntlTestProvider>
+      <IntlTestProvider locale="en">
+        <Footer locale="en" />
+      </IntlTestProvider>,
     );
+
     const links = screen.queryAllByRole('link');
     expect(links.length).toBeGreaterThanOrEqual(0);
   });

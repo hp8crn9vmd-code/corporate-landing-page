@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "tailwindcss-animate";
 
 @layer base {
@@ -48,8 +48,12 @@
   --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
   @keyframes fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   @keyframes slide-up {
@@ -62,10 +66,15 @@
       opacity: 1;
     }
   }
-  
+
   @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: .5; }
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
   }
 }
 
@@ -107,6 +116,24 @@
   body {
     /* الآن ستعمل هذه الكلاسات لأننا عرفناها في @theme */
     @apply bg-background text-foreground antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
   }
+}
+
+/* Accessibility */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  padding: 10px 14px;
+  background: #000;
+  color: #fff;
+  z-index: 1000;
+}
+.skip-link:focus {
+  left: 10px;
+  top: 10px;
+  outline: 3px solid #fff;
 }

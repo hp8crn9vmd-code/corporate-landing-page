@@ -2,10 +2,10 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import ContactFormClient from './ContactFormClient';
 export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  
+
   setRequestLocale(locale);
-  
-  const t = await getTranslations({locale, namespace: 'Contact'});
+
+  const t = await getTranslations({ locale, namespace: 'Contact' });
 
   return (
     <div className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -17,7 +17,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
           {t('form.sent').replace('!', '.')}
         </p>
       </div>
-      
+
       <ContactFormClient />
     </div>
   );
