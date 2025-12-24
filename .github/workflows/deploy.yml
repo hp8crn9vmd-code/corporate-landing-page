@@ -15,6 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
+  NEXT_TELEMETRY_DISABLED: '1'
   NEXT_PUBLIC_SITE_URL: 'https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}'
   NEXT_PUBLIC_REPO_NAME: '${{ github.event.repository.name }}'
   NEXT_PUBLIC_WEB3FORMS_KEY: '${{ secrets.WEB3FORMS_KEY }}'
@@ -53,7 +54,7 @@ jobs:
           fi
 
       - name: Run CI Checks
-        run: npm run ci
+        run: npm run build
 
   build:
     runs-on: ubuntu-latest

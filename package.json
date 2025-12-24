@@ -13,7 +13,10 @@
     "ci": "npm run lint && npm run typecheck && npm test && npm run build",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prebuild": "node scripts/generate-sitemap.mjs",
+    "audit": "npm audit --audit-level=high",
+    "check": "npm run lint && npm run typecheck && npm test"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
@@ -62,5 +65,8 @@
     "*.{json,md,css,html,yml,yaml}": [
       "prettier --write"
     ]
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
