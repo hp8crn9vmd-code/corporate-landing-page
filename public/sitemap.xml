@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://example.com/corporate-landing-page/</loc></url>
-  <url><loc>https://example.com/corporate-landing-page/en/</loc></url>
-  <url><loc>https://example.com/corporate-landing-page/en/about/</loc></url>
-  <url><loc>https://example.com/corporate-landing-page/en/services/</loc></url>
-  <url><loc>https://example.com/corporate-landing-page/en/contact/</loc></url>
-  <url><loc>https://example.com/corporate-landing-page/ar/</loc></url>
-  <url><loc>https://example.com/corporate-landing-page/ar/about/</loc></url>
-  <url><loc>https://example.com/corporate-landing-page/ar/services/</loc></url>
-  <url><loc>https://example.com/corporate-landing-page/ar/contact/</loc></url>
+  <url><loc>https://example.com/</loc></url>
+  <url><loc>https://example.com/en/</loc></url>
+  <url><loc>https://example.com/en/about/</loc></url>
+  <url><loc>https://example.com/en/services/</loc></url>
+  <url><loc>https://example.com/en/contact/</loc></url>
+  <url><loc>https://example.com/ar/</loc></url>
+  <url><loc>https://example.com/ar/about/</loc></url>
+  <url><loc>https://example.com/ar/services/</loc></url>
+  <url><loc>https://example.com/ar/contact/</loc></url>
 </urlset>
